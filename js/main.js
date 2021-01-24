@@ -1,39 +1,68 @@
-// start with strings, numbers and booleans
+const dogs = [
+    {name: 'Snickers', age: 2},
+    {name: 'Hugo', age: 8}
+];
 
-// and we want to make a copy of it.
+function makeGreen() {
+    const p = document.querySelector('p');
+    p.style.color = '#BADA55';
+    p.style.fontSize = '50px';
+}
 
-// You might think we can just do something like this:
+// Regular
+console.log('Hello');
 
-// However what happens when we update that array?
+// Interpolated
+console.log('Hello I am a %s string!', '💟' );
+console.log(`Hello I am ${dogs[0].name} string`)
 
-// no here is the problem!
+// Styled
+console.log('%c I am some great text', 'font-size:50px; background: aqua; text-shadow: 10px 10px 0 blue');
 
-// oh no - we have edited the original array too!
+// Warning!
+console.warn('0H NOO!');
 
-// Why? It's because that is an array reference, not an array copy. They both point to the same array!
+// Error
+console.error('It\'s an error!');
 
-// So, how do we fix this? We take a copy instead!
+// Info
+console.info('JavaScript is best known as the scripting language for Web pages.');
 
-// one way
+// Testing
+const p = document.querySelector('p');
+console.assert(p.classList.contains('ouch'), 'That is wrong');
 
-// or create a new array and contact the old one in
+// Clearing
+console.clear();
 
-// or use the new ES6 Spread
+// Viewing DOM elements
+console.log(p);
+console.dir(p);
 
-// now when we update it, the original one isn't changed
+// Grouping together
+dogs.forEach(dog => {
+    console.groupCollapsed(`${dog.name}`);
+    console.log(`This is ${dog.name}`);
+    console.log(`${dog.name} is ${dog.age} years old`);
+    console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+    console.groupEnd();
+});
 
-// The same thing goes for objects, let's say we have a person object
+// Counting
+console.count('Name');
+console.count('Name');
+console.count('Surname');
+console.count('Name');
+console.count('Surname');
 
-// with Objects
-const person = {
-    name: 'Vaida EiGrau',
-    age: 31
-};
+// Timing
+console.time('fetching data');
+fetch('https://api.github.com/users/VaidaEG')
+.then(data => data.json())
+.then(data => {
+    console.timeEnd('fetching data');
+    console.log(data);
+});
 
-// and think we make a copy:
-
-// how do we take a copy instead?
-
-// We will hopefully soon see the object ...spread
-
-// Things to note - this is only 1 level deep - both for Arrays and Objects. Lodash has a cloneDeep method, but should think twice before using it.
+// Table
+console.table(dogs);
